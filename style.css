@@ -1,5 +1,5 @@
 /**
-*
+* ! Changing default styles of the browser
 **/
 
 * {
@@ -13,14 +13,32 @@ body {
 }
 
 /* 
-  
+! Navbar styles are here
 */
 
 .navbar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: #212529;
   color: white;
   padding: 25px 60px;
 }
 
+.cart {
+  position: relative;
+  background-color: #fff;
+  color: #212529;
+  font-size: 30px;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.cartAmount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 16px;
+  background-color: red;
+  color: white;
+}
