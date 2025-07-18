@@ -36,8 +36,8 @@ body {
 
 .cartAmount {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -15px;
+  right: -10px;
   font-size: 16px;
   background-color: red;
   color: white;
