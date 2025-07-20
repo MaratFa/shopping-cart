@@ -23,6 +23,7 @@ body {
   background-color: #212529;
   color: white;
   padding: 25px 60px;
+  margin-bottom: 30px;
 }
 
 .cart {
@@ -51,5 +52,10 @@ body {
 
 .shop {
   display: grid;
-  grid-template-columns: repeat(4, 223px);
+  grid-template-columns: repeat(4, 222px);
+}
+
+.item {
+  border: 2px solid #212529;
+  border-radius: 4px;
 }
