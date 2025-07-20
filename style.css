@@ -1,6 +1,6 @@
-/**
-* ! Changing default styles of the browser
-**/
+/* 
+  Changing default styles of the browser
+*/
 
 * {
   margin: 0;
@@ -13,7 +13,7 @@ body {
 }
 
 /* 
-! Navbar styles are here
+  Navbar styles are here
 */
 
 .navbar {
@@ -43,4 +43,13 @@ body {
   font-size: 16px;
   padding: 3px;
   border-radius: 3px;
+}
+
+/* 
+  Shop items styles are here
+*/
+
+.shop {
+  display: grid;
+  grid-template-columns: repeat(4, 223px);
 }
