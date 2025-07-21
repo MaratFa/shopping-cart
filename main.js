@@ -31,6 +31,8 @@ let shopItemsData = [
 
 const shop = document.getElementById("shop");
 
+const basket = [];
+
 const generateShop = () => {
   return (shop.innerHTML = shopItemsData
     .map((item) => {
@@ -59,12 +61,21 @@ const generateShop = () => {
 generateShop();
 
 const increment = (id) => {
-  const selectedItem = id;
-  console.log(selectedItem);
+  const selectedItem = document.getElementById(id);
+
+  basket.push({
+    id: id,
+    item: 1,
+  });
+
+  selectedItem.innerHTML = Number(selectedItem.innerHTML) + 1;
+
+  console.log(basket);
+  
 };
 
 const decrement = (id) => {
-  console.log(id);
+  const selectedItem = document.getElementById(id);
 };
 
 const update = () => {};
