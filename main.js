@@ -62,20 +62,46 @@ generateShop();
 
 const increment = (id) => {
   const selectedItem = document.getElementById(id);
+  const search = basket.find((x) => x.id === selectedItem.id);
 
-  basket.push({
-    id: id,
-    item: 1,
-  });
-
-  selectedItem.innerHTML = Number(selectedItem.innerHTML) + 1;
+  if (search === undefined) {
+    basket.push({
+      id: id,
+      item: 1,
+    });
+  } else {
+    search.item += 1;
+  }
 
   console.log(basket);
-  
+  update(selectedItem.id);
 };
 
 const decrement = (id) => {
   const selectedItem = document.getElementById(id);
+  const search = basket.find((x) => x.id === selectedItem.id);
+
+  if (search === undefined) {
+    return;
+  } else if (search.item > 0) {
+    search.item -= 1;
+  }
+
+  // console.log(basket);
+
+
+
+
+
+
+
+
+
+  
+  update();
 };
 
-const update = () => {};
+const update = (id) => {
+  let search = basket.find((x) => x.id === id);
+  console.log(search);
+};
