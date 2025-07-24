@@ -88,11 +88,17 @@ const decrement = (id) => {
   }
 
   // console.log(basket);
-  update();
+  update(selectedItem.id);
 };
 
 const update = (id) => {
-  let search = basket.find((x) => x.id === id);
-  console.log(search.item);
+  let search = basket.find((x) => x.id === id);  
+  // console.log(search.item);
   document.getElementById(id).innerHTML = search.item;
+  calculation();
 };
+
+const calculation = () => {
+  console.log("calculation function is running");
+  
+}
