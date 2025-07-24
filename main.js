@@ -30,7 +30,6 @@ let shopItemsData = [
 ];
 
 const shop = document.getElementById("shop");
-
 const basket = [];
 
 const generateShop = () => {
@@ -38,32 +37,32 @@ const generateShop = () => {
     .map((item) => {
       const { id, name, price, desc, img } = item;
       return `
-        <div class="item" id="product-id-${id}">
-          <img width="220" src="${img}" alt="" />
-          <div class="details">
-            <h3>${name}</h3>
-            <p>${desc}</p>
+      <div class="item" id="product-id-${id}">
+      <img width="220" src="${img}" alt="" />
+      <div class="details">
+      <h3>${name}</h3>
+      <p>${desc}</p>
             <div class="price-quantity">
               <h2>$ ${price}
               <div class="buttons">
-                <i class="bi bi-dash-lg" onclick="decrement('${id}')"></i>
-                <div class="quantity" id=${id}>0</div>
-                <i class="bi bi-plus-lg" onclick="increment('${id}')"></i>
+              <i class="bi bi-dash-lg" onclick="decrement('${id}')"></i>
+              <div class="quantity" id=${id}>0</div>
+              <i class="bi bi-plus-lg" onclick="increment('${id}')"></i>
               </div>
-            </div>
-          </div>
-        </div>
-      `;
-    })
-    .join(""));
-};
-
-generateShop();
-
-const increment = (id) => {
-  const selectedItem = document.getElementById(id);
+              </div>
+              </div>
+              </div>
+              `;
+            })
+            .join(""));
+          };
+          
+          generateShop();
+          
+          const increment = (id) => {
+            const selectedItem = document.getElementById(id);
   const search = basket.find((x) => x.id === selectedItem.id);
-
+  
   if (search === undefined) {
     basket.push({
       id: id,
@@ -72,7 +71,7 @@ const increment = (id) => {
   } else {
     search.item += 1;
   }
-
+  
   // console.log(basket);
   update(selectedItem.id);
 };
@@ -80,25 +79,31 @@ const increment = (id) => {
 const decrement = (id) => {
   const selectedItem = document.getElementById(id);
   const search = basket.find((x) => x.id === selectedItem.id);
-
+  
   if (search === undefined) {
     return;
   } else if (search.item > 0) {
     search.item -= 1;
   }
-
+  
   // console.log(basket);
   update(selectedItem.id);
 };
 
 const update = (id) => {
-  let search = basket.find((x) => x.id === id);  
+  let search = basket.find((x) => x.id === id);
   // console.log(search.item);
   document.getElementById(id).innerHTML = search.item;
   calculation();
 };
 
 const calculation = () => {
-  console.log("calculation function is running");
+  let amount = 0;
+  const cartIcon = document.getElementById("cartAmount");
+  basket.map((x) => {
+    amount += x.item;
+  });
   
-}
+  cartIcon.innerHTML = amount;
+  
+};
