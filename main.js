@@ -53,16 +53,16 @@ const generateShop = () => {
               </div>
               </div>
               `;
-            })
-            .join(""));
-          };
-          
-          generateShop();
-          
-          const increment = (id) => {
-            const selectedItem = document.getElementById(id);
+    })
+    .join(""));
+};
+
+generateShop();
+
+const increment = (id) => {
+  const selectedItem = document.getElementById(id);
   const search = basket.find((x) => x.id === selectedItem.id);
-  
+
   if (search === undefined) {
     basket.push({
       id: id,
@@ -71,7 +71,7 @@ const generateShop = () => {
   } else {
     search.item += 1;
   }
-  
+
   // console.log(basket);
   update(selectedItem.id);
 };
@@ -79,13 +79,13 @@ const generateShop = () => {
 const decrement = (id) => {
   const selectedItem = document.getElementById(id);
   const search = basket.find((x) => x.id === selectedItem.id);
-  
+
   if (search === undefined) {
     return;
   } else if (search.item > 0) {
     search.item -= 1;
   }
-  
+
   // console.log(basket);
   update(selectedItem.id);
 };
@@ -98,12 +98,7 @@ const update = (id) => {
 };
 
 const calculation = () => {
-  let amount = 0;
   const cartIcon = document.getElementById("cartAmount");
-  basket.map((x) => {
-    amount += x.item;
-  });
-  
-  cartIcon.innerHTML = amount;
-  
+
+  cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y);
 };
