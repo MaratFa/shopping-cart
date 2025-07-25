@@ -71,7 +71,7 @@ const increment = (id) => {
   } else {
     search.item += 1;
   }
-
+  localStorage.setItem("data", JSON.stringify(basket));
   // console.log(basket);
   update(selectedItem.id);
 };
@@ -85,7 +85,16 @@ const decrement = (id) => {
   } else if (search.item > 0) {
     search.item -= 1;
   }
+  localStorage.setItem("data", JSON.stringify(basket));
 
+
+
+
+
+
+
+
+  
   // console.log(basket);
   update(selectedItem.id);
 };
@@ -99,6 +108,5 @@ const update = (id) => {
 
 const calculation = () => {
   const cartIcon = document.getElementById("cartAmount");
-
-  cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y);
+  cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
 };
