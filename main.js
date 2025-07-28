@@ -30,7 +30,7 @@ let shopItemsData = [
 ];
 
 const shop = document.getElementById("shop");
-const basket = JSON.parse(localStorage.getItem("data")) || [];
+let basket = JSON.parse(localStorage.getItem("data")) || [];
 
 const generateShop = () => {
   return (shop.innerHTML = shopItemsData
@@ -73,9 +73,10 @@ const increment = (id) => {
   } else {
     search.item += 1;
   }
-  localStorage.setItem("data", JSON.stringify(basket));
   // console.log(basket);
   update(selectedItem.id);
+
+  localStorage.setItem("data", JSON.stringify(basket));
 };
 
 const decrement = (id) => {
@@ -87,14 +88,11 @@ const decrement = (id) => {
   else {
     search.item -= 1;
   }
-  localStorage.setItem("data", JSON.stringify(basket));
-  
-
-
-
-
-  // console.log(basket);
   update(selectedItem.id);
+  basket = basket.filter((x) => x.item !== 0);
+  // console.log(basket);
+
+  localStorage.setItem("data", JSON.stringify(basket));
 };
 
 const update = (id) => {
