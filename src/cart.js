@@ -12,27 +12,29 @@ calculation();
 
 let generateCartItems = () => {
   if (basket.length !== 0) {
-    return (ShoppingCart.innerHTML = basket
+    ShoppingCart.innerHTML = basket
       .map((x) => {
         const search = shopItemsData.find((y) => y.id === x.id);
         return `
         <div class="cart-item">
           <img width="100" src="${search.img}" alt="" />
           <div class="details">
-          
-          
 
+            <div class="title-price-x">
+              <h4>
+                <p>${search.name}</p>
+                <p>$ ${search.price}</p>
+              </h4>
+              <i class="bi bi-x-lg"></i>
+            </div>
 
+            <div class="cart-buttons"></div>
 
-          
-
-
-          
-          
+            <h3></h3>          
           </div>
         </div>`;
       })
-      .join(""));
+      .join("");
   } else {
     ShoppingCart.innerHTML = ``;
     label.innerHTML = `
