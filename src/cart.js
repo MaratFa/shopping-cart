@@ -12,6 +12,27 @@ calculation();
 
 let generateCartItems = () => {
   if (basket.length !== 0) {
+    return (ShoppingCart.innerHTML = basket
+      .map((x) => {
+        const search = shopItemsData.find((y) => y.id === x.id);
+        return `
+        <div class="cart-item">
+          <img width="100" src="${search.img}" alt="" />
+          <div class="details">
+          
+          
+
+
+
+          
+
+
+          
+          
+          </div>
+        </div>`;
+      })
+      .join(""));
   } else {
     ShoppingCart.innerHTML = ``;
     label.innerHTML = `
