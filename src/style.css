@@ -141,4 +141,26 @@ a {
 
 .cart-item {
   border: 2px solid #212529;
+  border-radius: 5px;
+  display: flex;
+}
+
+.title-price-x {
+  width: 195px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-item-price {
+  background-color: #212529;
+  color: white;
+  border-radius: 4px;
+  padding: 3px 6px;
 }
