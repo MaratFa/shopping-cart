@@ -25,7 +25,7 @@ let generateCartItems = () => {
                 <p>${search.name}</p>
                 <p class="cart-item-price">$ ${search.price}</p>
               </h4>
-              <i class="bi bi-x-lg"></i>
+              <i class="bi bi-x-lg" onclick="removeItem('${x.id}')"></i>
             </div>
 
             <div class="buttons">
@@ -34,7 +34,7 @@ let generateCartItems = () => {
               <i class="bi bi-plus-lg" onclick="increment('${x.id}')"></i>
             </div>
 
-            <h3></h3>          
+            <h3>$ ${search.price * x.item}</h3>          
           </div>
         </div>`;
       })
@@ -64,7 +64,8 @@ const increment = (id) => {
   } else {
     search.item += 1;
   }
-  // console.log(basket);
+
+  generateCartItems();
   update(selectedItem.id);
 
   localStorage.setItem("data", JSON.stringify(basket));
@@ -81,15 +82,20 @@ const decrement = (id) => {
   }
   update(selectedItem.id);
   basket = basket.filter((x) => x.item !== 0);
-  // console.log(basket);
-
+  generateCartItems();
   localStorage.setItem("data", JSON.stringify(basket));
 };
-
 
 const update = (id) => {
   let search = basket.find((x) => x.id === id);
   // console.log(search.item);
   document.getElementById(id).innerHTML = search.item;
   calculation();
+};
+
+const removeItem = (id) => {
+  basket = basket.filter((x) => x.id !== id);
+  generateCartItems();
+  calculation();
+  localStorage.setItem("data", JSON.stringify(basket));
 };
