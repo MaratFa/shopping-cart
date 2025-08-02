@@ -91,11 +91,33 @@ const update = (id) => {
   // console.log(search.item);
   document.getElementById(id).innerHTML = search.item;
   calculation();
+  TotalAmount();
 };
 
 const removeItem = (id) => {
   basket = basket.filter((x) => x.id !== id);
   generateCartItems();
   calculation();
+  TotalAmount();
   localStorage.setItem("data", JSON.stringify(basket));
 };
+
+const TotalAmount = () => {
+  if (basket.length !== 0) {
+    const amount = basket
+      .map((x) => {
+        const { item, id } = x;
+        const search = shopItemsData.find((y) => y.id === id) || [];
+        return item * search.price;
+      })
+      .reduce((total, curVal) => total + curVal, 0);
+    // console.log(amount);
+    label.innerHTML = `
+      <h2>Total Bill : $ ${amount}</h2>
+      <button class="checkout">Checkout</button>
+      <button class="removeAll">Clear Cart</button>
+    `;
+  } else return;
+};
+
+TotalAmount();
