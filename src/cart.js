@@ -1,29 +1,30 @@
-let label = document.getElementById("label");
-let ShoppingCart = document.getElementById("shopping-cart");
+const label = document.getElementById("label");
+const ShoppingCart = document.getElementById("shopping-cart");
+const cartIcon = document.getElementById("cartAmount");
 
 let basket = JSON.parse(localStorage.getItem("data")) || [];
 
-const calculation = () => {
-  const cartIcon = document.getElementById("cartAmount");
+function calculation() {
   cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
-};
+}
 
 calculation();
 
-let generateCartItems = () => {
+function generateCartItems() {
   if (basket.length !== 0) {
     ShoppingCart.innerHTML = basket
       .map((x) => {
         const search = shopItemsData.find((y) => y.id === x.id);
+        const { img, name, price } = search;
         return `
         <div class="cart-item">
-          <img width="100" src="${search.img}" alt="" />
+          <img width="100" src="${img}" alt="" />
           <div class="details">
 
             <div class="title-price-x">
               <h4 class="title-price">
-                <p>${search.name}</p>
-                <p class="cart-item-price">$ ${search.price}</p>
+                <p>${name}</p>
+                <p class="cart-item-price">$ ${price}</p>
               </h4>
               <i class="bi bi-x-lg" onclick="removeItem('${x.id}')"></i>
             </div>
@@ -48,11 +49,11 @@ let generateCartItems = () => {
     </a>
     `;
   }
-};
+}
 
 generateCartItems();
 
-const increment = (id) => {
+function increment(id) {
   const selectedItem = document.getElementById(id);
   const search = basket.find((x) => x.id === selectedItem.id);
 
@@ -69,9 +70,9 @@ const increment = (id) => {
   update(selectedItem.id);
 
   localStorage.setItem("data", JSON.stringify(basket));
-};
+}
 
-const decrement = (id) => {
+function decrement(id) {
   const selectedItem = document.getElementById(id);
   const search = basket.find((x) => x.id === selectedItem.id);
 
@@ -84,25 +85,25 @@ const decrement = (id) => {
   basket = basket.filter((x) => x.item !== 0);
   generateCartItems();
   localStorage.setItem("data", JSON.stringify(basket));
-};
+}
 
-const update = (id) => {
+function update(id) {
   let search = basket.find((x) => x.id === id);
   // console.log(search.item);
   document.getElementById(id).innerHTML = search.item;
   calculation();
   TotalAmount();
-};
+}
 
-const removeItem = (id) => {
+function removeItem(id) {
   basket = basket.filter((x) => x.id !== id);
   generateCartItems();
   calculation();
   TotalAmount();
   localStorage.setItem("data", JSON.stringify(basket));
-};
+}
 
-const TotalAmount = () => {
+function TotalAmount() {
   if (basket.length !== 0) {
     const amount = basket
       .map((x) => {
@@ -115,9 +116,16 @@ const TotalAmount = () => {
     label.innerHTML = `
       <h2>Total Bill : $ ${amount}</h2>
       <button class="checkout">Checkout</button>
-      <button class="removeAll">Clear Cart</button>
+      <button class="removeAll" onclick="clearCart()">Clear Cart</button>
     `;
   } else return;
-};
+}
+
+function clearCart() {
+  basket = [];
+  generateCartItems();
+  calculation();
+  localStorage.setItem("data", JSON.stringify(basket));
+}
 
 TotalAmount();
